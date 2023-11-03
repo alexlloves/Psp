@@ -2,28 +2,36 @@ package ejercicios.ejercicio2;
 
 import java.util.Random;
 
-public class Contador {
- private int contador;
- private Random random;
+public class Contador{
 
- public Contador() {
-   this.contador=0;
-   this.random=new Random();
- }
+    private int contador;
+    private Random random;
 
- public int getContador() {
-   return this.contador;
- }
+    public Contador() {
+        this.contador = 0;
+        this.random = new Random();
+    }
 
- public void incrementa() {
+    public int getContador() {
+        return this.contador;
+    }
 
-  contador++;
-  /*
-   int valor=this.contador;
-   try { Thread.sleep(random.nextInt(5)); }
-   catch (InterruptedException ex) {}
-   this.contador=valor+1;
-  */
+    public void incrementa() {
 
- }
+//        contador++;
+        
+    synchronized(this){
+        int valor = this.contador;
+        try {
+            Thread.sleep(random.nextInt(5));
+        } catch (InterruptedException ex) {
+        }
+        this.contador = valor + 1;
+        
+    }
+         
+
+    }
+
+
 }
